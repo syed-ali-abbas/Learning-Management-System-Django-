@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
 from Accounts.models.Students import User
+from django.contrib.auth.hashers import make_password
 
 
 class Signup(View):
@@ -37,6 +38,8 @@ class Signup(View):
                 error_msg = 'Password is required'
             elif len(student.password)<4:
                 error_msg='Password should not be smaller than 4'
+            elif not student.Image:
+                error_msg='Image is required'
             return error_msg
 
 
@@ -55,18 +58,36 @@ class Signup(View):
         Degree_Duration = request.POST.get('degreeduration')
         max_semester = request.POST.get('maxsemesters')
         password = request.POST.get('password')
-        # Image = request.POST.get('image')
-        student = User(first_name=first_name,last_name=last_name,program=program,intake_semester=intake_semester,mobile_no=mobile_no,email=email,current_address=current_address,permanent_address=permanent_address,Degree_Duration=Degree_Duration,max_semester=max_semester,password=password)
-        print(first_name,last_name,program,intake_semester,mobile_no,email,current_address,permanent_address,Degree_Duration,max_semester,password)
-       
+        Image = request.POST.get('image')
+        
+        student = User(first_name=first_name,last_name=last_name,program=program,intake_semester=intake_semester,mobile_no=mobile_no,email=email,current_address=current_address,permanent_address=permanent_address,Degree_Duration=Degree_Duration,max_semester=max_semester,password=password, Image=Image)
+        # print(first_name,last_name,program,intake_semester,mobile_no,email,current_address,permanent_address,Degree_Duration,max_semester,password,Image)
+        data={
+            'firstname':first_name,
+            'lastname':last_name,
+            'program':program,
+            'intakesemester':intake_semester,
+            'mobilenumber':mobile_no,
+            'email':email,
+            'currentaddress':current_address,
+            'permanentaddress':permanent_address,
+            'degreeduration':Degree_Duration,
+            'maxsemesters':max_semester,
+            'image':Image
+        }
         error_msg = self.validation(student)
         if not error_msg:
-            print(student.first_name)
-            return redirect('home')
+            student.password = make_password(student.password)
+            student.registeration()
+            return redirect('login')
         else:
             print(student.last_name)
-            return render(request,'signup.html')
-        # student.registeration()
+            after_error={
+                'data_val':data,
+                'error_msg':error_msg
+            }
+            return render(request,'signup.html',after_error)
+        
             
 
        

@@ -1,6 +1,7 @@
 from django.views import View
 from django.shortcuts import render, HttpResponse, redirect
 from Accounts.models.Students import User
+from django.contrib.auth.hashers import check_password
 
 
 class login(View):
@@ -12,6 +13,27 @@ class login(View):
         password = request.POST.get('password')
         student = User.get_student_by_email(email)
         print(student)
+        error_msg=None
         if student:
-            return redirect('home')
+            flag = check_password(password, student.password)
+            if flag:
+                request.session['student_id']=student.id
+                print(student.id)
+                data={
+                    'stud':student
+                }
+                return render(request,'home.html',data)
+            else:
+                error_msg='Password Incorrect'
+        else:
+            error_msg='No user found with this email'
         
+        error={
+            'error':error_msg
+        }
+        return render(request,'login.html',error)
+        
+            
+def logout(request):
+    request.session.clear()
+    return redirect('login')

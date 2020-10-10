@@ -17,7 +17,10 @@ class User(models.Model):
 
 
     def get_student_by_email(email):
-        return User.objects.get(email=email)
+        try:
+            return User.objects.get(email=email)
+        except:
+            False
 
     
     def registeration(self):
