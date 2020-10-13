@@ -25,3 +25,6 @@ class User(models.Model):
     
     def registeration(self):
         self.save()
+
+    def __str__(self):
+        return self.first_name+"\t"+self.last_name

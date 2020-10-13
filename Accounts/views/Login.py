@@ -2,6 +2,7 @@ from django.views import View
 from django.shortcuts import render, HttpResponse, redirect
 from Accounts.models.Students import User
 from django.contrib.auth.hashers import check_password
+from Accounts.models.category import Categorie
 
 
 class login(View):
@@ -19,9 +20,13 @@ class login(View):
             if flag:
                 request.session['student_id']=student.id
                 print(student.id)
-                data={
+                categories = Categorie.get_all_categories()
+                # print(categories)
+                data = {
+                    'category': categories,
                     'stud':student
                 }
+                # print(categories)
                 return render(request,'home.html',data)
             else:
                 error_msg='Password Incorrect'
