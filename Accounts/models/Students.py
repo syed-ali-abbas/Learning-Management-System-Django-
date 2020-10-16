@@ -28,3 +28,7 @@ class User(models.Model):
 
     def __str__(self):
         return self.first_name+"\t"+self.last_name
+
+    @staticmethod
+    def get_all_user_data_by_id(id):
+        return User.objects.get(id=id)

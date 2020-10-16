@@ -81,7 +81,7 @@ class Signup(View):
             student.registeration()
             return redirect('login')
         else:
-            print(student.last_name)
+            # print(student.last_name)
             after_error={
                 'data_val':data,
                 'error_msg':error_msg

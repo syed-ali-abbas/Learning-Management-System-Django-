@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+<div class="container-fluid col-lg-9 mx-auto">
+    <div class="alert alert-primary" role="alert">
+        <h1>View Profile</h1>
+    </div>
+    <hr>
+    <div>
+        <div>
+            <table class="table table-bordered text-center">
+                <tbody>
+
+                <tr>
+                    <td rowspan="2">
+                        <img src="{{stud.Image.url}}" width="90" height="110" alt="">
+                    </td>
+                    <th>First Name</th>
+                    <td>{{stud.first_name}}</td>
+                    <th>Last Name</th>
+                    <td>{{stud.last_name}}</td>
+                    <th>Degree Duration</th>
+                    <td>{{stud.Degree_Duration}}</td>
+                </tr>
+                <tr>
+                    <th>Intake Semester</th>
+                    <td>{{stud.intake_semester}}</td>
+                    <th>Email</th>
+                    <td>{{stud.email}} | <a href="{% url 'edit_email' %}">Edit</a></td>
+                    <th>Maximum Semesters</th>
+                    <td>{{stud.max_semester}}</td>
+
+                </tr>
+                <tr>
+
+                    <th>Mobile No.</th>
+                    <td>{{stud.mobile_no}}</td>
+                    <th>Program</th>
+                    <td>{{stud.program}}</td>
+                    <th>Current Address</th>
+
+                    <td colspan="2">{{stud.current_address}}</td>
+                </tr>
+                <tr>
+
+                    <th>Permanent Address</th>
+                    <td>{{stud.permanent_address}}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -13,13 +13,13 @@ class login(View):
         email = request.POST.get('email')
         password = request.POST.get('password')
         student = User.get_student_by_email(email)
-        print(student)
+        # print(student)
         error_msg=None
         if student:
             flag = check_password(password, student.password)
             if flag:
                 request.session['student_id']=student.id
-                print(student.id)
+                # print(student.id)
                 categories = Categorie.get_all_categories()
                 # print(categories)
                 data = {
