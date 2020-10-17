@@ -1,17 +1,30 @@
 {% extends 'index.html' %}
 {% block content %}
 <div class="container-fluid">
-<div>
-    <div>
-        <form action="" method="POST">
-{% csrf_token %}
-            <div class="form-group">
-                <label for="">Email</label>
-                <input type="email" name="email" value="{{student.email}}" class="form-control" placeholder="xyz@gmail.com" aria-describedby="helpId">
-              </div>
-            <input type="submit" value="Confirm">
-        </form>
+    <div class="form col-lg-5 mx-auto border rounded pt-5 mt-3">
+
+        <div class="alert alert-light border-rounded" role="alert">
+            <h2>Edit Email</h2>
+        </div>
+<hr>
+        <div >
+            {% if msg %}
+            <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">{{msg}}</h4>
+             
+            </div>
+            {% endif %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Email</label>
+                   
+                    <input type="email" name="email" value="{{student.email}}" class="form-control"
+                           placeholder="xyz@gmail.com" aria-describedby="helpId">
+                </div>
+                <input type="submit" value="Confirm" class="btn btn-success mb-2">
+            </form>
+        </div>
     </div>
-</div>    
 </div>
 {% endblock content %}
