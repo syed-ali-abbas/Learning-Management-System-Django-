@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% block content %}
+
+{% if stud %}
+<div class="fluid-container">
+    <div class="col-lg-10 float-right mt-2 mx-auto border-rounded">
+        <div class="alert alert-light">
+            <div>
+                <h1>Course Outline</h1>
+            </div>
+        </div>
+        <div>
+            {% if error %}
+            <div class="alert alert-danger">
+                <h1>{{error}}</h1>
+            </div>
+            {% endif %}
+        </div>
+        <table class="table">
+
+            <thead>
+            {% for cd in course_data %}
+            <tr>
+                <th scope="col">{{cd.course_name}}</th>
+                <th scope="col"><a href="{{cd.upload_file.url}}">Download file</a></th>
+                <th scope="col">{{cd.class_name}}</th>
+            </tr>
+            {% endfor %}
+            </thead>
+
+        </table>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock content %}

@@ -1,12 +1,9 @@
 from django.views import View
 from django.shortcuts import render
-from Accounts.models.Students import User
 from Accounts.models.category import Categorie
+from Accounts.models.Students import User
 
-
-
-
-class HomePageView(View):
+class CoursePlan(View):
     def get(self, request):
         id = request.session['student_id']
         if id:
@@ -15,7 +12,7 @@ class HomePageView(View):
 
             data = {
                 'stud': user,
-                'category':cat
+                'category': cat
             }
             # return render(request, 'profileView.html', data)
-        return render(request, 'home.html',data)
+        return render(request, 'course_plan.html', data)

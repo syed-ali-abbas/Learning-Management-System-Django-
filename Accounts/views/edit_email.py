@@ -1,16 +1,20 @@
 from Accounts.models.Students import User
 from django.shortcuts import render
 from django.views import View
+from Accounts.models.category import Categorie
 
 
 class UpdateEmail(View):
     def get(self, request):
         user_id = request.session['student_id']
+        cat = Categorie.get_all_categories()
         if user_id:
             user = User.get_all_user_data_by_id(user_id)
             data = {
-                'student': user
+                'student': user,
+                'category':cat
             }
+
         return render(request, 'edit_email.html', data)
 
 

@@ -19,9 +19,7 @@ class login(View):
             flag = check_password(password, student.password)
             if flag:
                 request.session['student_id']=student.id
-                # print(student.id)
                 categories = Categorie.get_all_categories()
-                # print(categories)
                 data = {
                     'category': categories,
                     'stud':student

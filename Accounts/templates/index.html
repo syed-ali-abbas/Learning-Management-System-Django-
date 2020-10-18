@@ -14,7 +14,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <a class="navbar-brand" href="/home">Bahria University</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Bahria University</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,24 +47,19 @@
     </div>
 </nav>
 
-
-{% if stud %}
-<div class="container-fluid">
-    <div>
-        <div class="col-lg-2 my-2">
-            <div>
-                <div class="list-group shadow-lg">
-                    {% for cat in category %}
-                    <a href="category/{{cat.id}}" class="list-group-item list-group-item-dark text-decoration-none">
-                        {{cat.cat_name}} </a>
-                    {% endfor %}
+ <div>
+            <div class="col-lg-2 my-2 float-left">
+                <div>
+                    <div class="list-group shadow-lg">
+                        {% for cat in category %}
+                        <a href="/category/{{cat.id}}" class="list-group-item list-group-item-dark text-decoration-none">
+                            {{cat.cat_name}} </a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-{% endif %}
 
 
 {% block content %}

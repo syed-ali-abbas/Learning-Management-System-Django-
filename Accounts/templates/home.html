@@ -1,7 +1,42 @@
 {% extends 'index.html' %}
 {% block content %}
 <div class="container-fluid">
-    
-</div>
+  {% if stud %}
+    <div class="col-lg-7 float-right">
+        <h1>
+            Home
+        </h1>
+            </div>
+        
 
+
+
+
+    <!-- <div class="container-fluid"> -->
+<!--        <div>-->
+<!--            <div class="col-lg-2 my-2">-->
+<!--                <div>-->
+<!--                    <div class="list-group shadow-lg">-->
+<!--                        {% for cat in category %}-->
+<!--                        <a href="/category/{{cat.id}}" class="list-group-item list-group-item-dark text-decoration-none">-->
+<!--                            {{cat.cat_name}} </a>-->
+<!--                        {% endfor %}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        -->
+    <!-- </div> -->
+    
+    
+    
+    
+    
+    {% endif %}
+    
+    
+
+
+
+</div>
 {% endblock content %}

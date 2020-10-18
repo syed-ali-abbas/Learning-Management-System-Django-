@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
 from Accounts.models.Students import User
+from Accounts.models.category import Categorie
 
 
 class ProfilePageView(View):
@@ -9,14 +10,15 @@ class ProfilePageView(View):
         # print(id)
         if id:
             user = User.get_all_user_data_by_id(id)
-
+            cat = Categorie.get_all_categories()
             data = {
-                'stud': user
+                'stud': user,
+                'category':cat
             }
             return render(request, 'profileView.html', data)
         else:
             # print("error Orccured")
-            return render(request, 'profileView.html')
+            return redirect('home')
 
 
 
