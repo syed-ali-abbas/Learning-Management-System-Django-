@@ -2,31 +2,25 @@
 {% block content %}
 <div class="container-fluid">
 <hr>
-
 <div>
-    <div>
-        <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
- Courses
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-    </div>
 
+    <form action="" method="POST" class="float-right">
+        {% csrf_token %}
+        <select onchange="this.form.submit()" name="term">
+            {% for trm in term %}
+                <option name="term">{{trm}}</option>
+            {% endfor %}
+            </select>
 
-
-
-
+<select onchange="this.form.submit()" name="subject">
+    <option disabled selected="True">Select your Subject</option>
+    {% for subject in subjects %}
+        <option >{{subject}}</option>
+    {% endfor %}
+    </select>
+</form>
 </div>
 <hr>
-
-
-
-
 
 
 

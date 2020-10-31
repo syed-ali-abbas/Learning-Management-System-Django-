@@ -16,5 +16,6 @@ urlpatterns = [
     path('category/2/',ProfilePageView.as_view(), name='profileview'),
     path('edit-email',UpdateEmail.as_view(),name='edit_email' ),
     path('category/3/', CourseOutline.as_view(),name='course_outline' ),
-    path('category/4/',CoursePlan.as_view(),name='course_plan')
+    path('category/4/',CoursePlan.as_view(),name='course_plan'),
+
 ]
